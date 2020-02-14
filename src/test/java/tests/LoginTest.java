@@ -2,12 +2,12 @@ package tests;
 
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTest extends BaseTest{
 
     @Test
     public void loginUsingCorrectCredentials() {
-        open("https://moodpanda.com/Login/");
-    }
+        loginSteps.login("gotestweb@gmail.com", "6699273");
+        moodSteps.updateMood(10, "bla bla");
+      }
 }

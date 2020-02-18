@@ -4,12 +4,15 @@ import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RateHappinesModal extends BasePage {
 
     private static final String SLIDER_HAPPINED_CSS = "#slider-range-min";
-    private static final String SLIDER_LOCATOR = ".ui-slider-range-min";
+    private static final By UPDATE_MOOD_BUTTON = withText("Update Mood to");
+    private static final String MOOD_COMMENT_AREA = ("#TextBoxUpdateMoodTag");
 
     @Override
     RateHappinesModal openPage() {
@@ -21,11 +24,8 @@ public class RateHappinesModal extends BasePage {
         $(SLIDER_HAPPINED_CSS).shouldBe(Condition.visible);
     }
 
-    public RateHappinesModal updateMood(int moodRate, String comment){
-        String style = $(SLIDER_LOCATOR).getAttribute("Class");
-        String[] rate = style.split("badge-");
-        int defRate = Integer.parseInt(rate[1]);
-        int difference = moodRate - defRate;
+    public RateHappinesModal updateMoodRate(int moodRate){
+        int difference = moodRate - getActualRateInModal();
         Keys key;
 
         if(difference < 0) {
@@ -40,5 +40,22 @@ public class RateHappinesModal extends BasePage {
 
         return this;
     }
+
+    public RateHappinesModal writeCommentInMoodModal(String comment){
+        $(MOOD_COMMENT_AREA).sendKeys(comment);
+        return this;
+    }
+
+    public RateHappinesModal saveMood(){
+        $(UPDATE_MOOD_BUTTON).click();
+        return this;
+    }
+
+    public int getActualRateInModal(){
+        String buttonText = $(UPDATE_MOOD_BUTTON).getText();
+        String[] rate = buttonText.split("to ");
+        return Integer.parseInt(rate[1]);
+    }
+
 
 }

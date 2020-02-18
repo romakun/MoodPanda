@@ -2,8 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginPage extends BasePage {
 
@@ -26,8 +25,8 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage login(String email, String password){
-        $(LOGIN_NAME_CSS).sendKeys(email);
-        $(LOGIN_PASSWORD_CSS).sendKeys(password);
+        $(LOGIN_NAME_CSS).setValue(email);
+        $(LOGIN_PASSWORD_CSS).setValue(password);
         $(LOGIN_BUTTON_CSS).click();
         return this;
     }

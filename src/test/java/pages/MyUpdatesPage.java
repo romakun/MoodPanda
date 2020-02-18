@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementShould;
 import com.codeborne.selenide.ex.ListSizeMismatch;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -13,6 +14,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
+@Log4j2
 public class MyUpdatesPage extends BasePage {
 
     private static final String URL = "https://moodpanda.com/Feed/?Me=1";
@@ -64,6 +66,8 @@ public class MyUpdatesPage extends BasePage {
                 .click();
         int commentsCount = Integer.parseInt(getMoodByNumber(moodNumber).find(".mccomments" + moodNumber).getText());
 
+        log.info(String.format("Количество комментариев на странице = %s"), commentsCount);
+
         $(COMMENT_BLOCK_CSS + (moodNumber - 1))
                 .shouldBe(Condition.visible)
                 .find("textarea")
@@ -74,7 +78,7 @@ public class MyUpdatesPage extends BasePage {
          try {
             getMoodByNumber(moodNumber).find(".mccomments" + moodNumber).shouldBe(Condition.text("" + (commentsCount + 1)));
         } catch (ElementShould e){
-             System.out.println("Что-то пошло не так и количество комментариев не увеличилось на 1");
+             log.error("Что-то пошло не так и количество комментариев не увеличилось на 1");
          }
     }
 

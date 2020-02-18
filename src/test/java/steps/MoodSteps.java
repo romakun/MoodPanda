@@ -2,8 +2,10 @@ package steps;
 
 import com.sun.xml.internal.ws.developer.StreamingAttachment;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import pages.MyUpdatesPage;
 
+@Log4j2
 public class MoodSteps {
 
     MyUpdatesPage page;
@@ -14,8 +16,7 @@ public class MoodSteps {
 
     @Step("Open page with my moods")
     public MoodSteps openMyUpdatesPage(){
-        page
-                .openPage();
+        page.openPage();
         return this;
     }
 

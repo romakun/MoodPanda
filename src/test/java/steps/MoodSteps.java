@@ -25,7 +25,8 @@ public class MoodSteps {
                 .clickUpdateMood()
                 .updateMoodRate(moodRate)
                 .writeCommentInMoodModal(comment)
-                .saveMood();
+                .saveMood()
+                .checkUpdateMoodModal(comment);
     return this;
     }
 

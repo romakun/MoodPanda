@@ -6,12 +6,15 @@ import com.codeborne.selenide.ex.ElementShould;
 import com.codeborne.selenide.ex.ListSizeMismatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.fail;
 
 public class MyUpdatesPage extends BasePage {
 
@@ -25,6 +28,7 @@ public class MyUpdatesPage extends BasePage {
     private static final String BUTTON_REPLY_CSS = ".ButtonReply";
     private static final String MY_MOOD_HUG_ICONS = ".ButtonHug";
     private static final String MY_MOOD_FOLLOW_ICON = ".FeedFollow";
+
 
     @Override
     public MyUpdatesPage openPage() {
@@ -86,7 +90,7 @@ public class MyUpdatesPage extends BasePage {
         try {
             $$(byText("*Hugs*")).shouldHaveSize(commentHugsCount + 1);
         } catch (ListSizeMismatch e){
-            System.out.println("Количество обнимашек не увеличилось на 1");
+            Assert.fail("Количество обнимашек не увеличилось на 1");
         }
     }
 

@@ -1,11 +1,14 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import steps.ChangeAvatarSteps;
 import steps.EditProfileSteps;
 import steps.LoginSteps;
 import steps.MoodSteps;
+
+import static com.codeborne.selenide.Selenide.close;
 
 public class BaseTest {
 
@@ -15,9 +18,9 @@ public class BaseTest {
     ChangeAvatarSteps changeAvatarsteps;
 
     @BeforeClass
-    public void setupDriver(){
+    public void setupDriver() {
 
-     //   Configuration.headless = true;
+        //   Configuration.headless = true;
         Configuration.startMaximized = true;
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
@@ -27,5 +30,10 @@ public class BaseTest {
         moodSteps = new MoodSteps();
         editprofilesteps = new EditProfileSteps();
         changeAvatarsteps = new ChangeAvatarSteps();
+    }
+
+    @AfterMethod
+    public void quitBrowser() {
+        close();
     }
 }

@@ -36,19 +36,17 @@ public class MoodSteps {
         return this;
     }
 
-    @Step("Add comment message under '{moodNumber} mood")
+    @Step("Add comment message under '{moodNumber}' mood")
     public MoodSteps addCommentInMood(int moodNumber, String comment){
         page
                 .addComment(moodNumber, comment);
         return this;
     }
 
-    @Step("Add Hug message under '{moodNumber} mood")
+    @Step("Add Hug message under '{moodNumber}' mood")
     public MoodSteps addHugsInMoodComment(int moodNumber){
         page
                 .addHugs(moodNumber);
         return this;
     }
-
-
 }

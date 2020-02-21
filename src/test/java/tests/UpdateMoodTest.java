@@ -10,7 +10,7 @@ public class UpdateMoodTest extends BaseTest{
 
     @BeforeClass
     public void logIn(){
-        loginSteps.login("gotestweb@gmail.com", "6699273");
+        loginSteps.login("gotestweb@mailinator.com", "12345678");
     }
 
     @Test(dataProvider = "moodsData")

@@ -15,16 +15,16 @@ public class EditProfileTest extends BaseTest {
                 .gender("Other")
                 .build();
 
-        LoginDetailsModel data = LoginDetailsModel.builder()
-                .emailAddress("gotestweb@mailinator.com")
-                .newPassword("12345678")
-                .build();
+//        LoginDetailsModel data = LoginDetailsModel.builder()
+//                .emailAddress("gotestweb@mailinator.com")
+//                .newPassword("12345678")
+//                .build();
 
-        loginSteps.login("gotestweb@gmail.com", "6699273");
+        loginSteps.login("gotestweb@mailinator.com", "12345678");
         editprofilesteps
                 .openEditProfilePage()
                 .typeNewData(options)
-                .typeNewDetails(data)
+       //         .typeNewDetails(data)
                 .saveDataInProfile();
     }
 }

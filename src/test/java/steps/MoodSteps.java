@@ -1,6 +1,5 @@
 package steps;
 
-import com.sun.xml.internal.ws.developer.StreamingAttachment;
 import io.qameta.allure.Step;
 import pages.MyUpdatesPage;
 

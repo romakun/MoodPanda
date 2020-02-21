@@ -28,7 +28,7 @@ jobs:
           command: google-chrome --version
       - run:
           name: Setting chmod for Chrome
-          command: chmod 777 src/test/resources/webdrivers/chromedriver.exe
+          command: chmod 777 src/test/resources/webdrivers/chromedriver
       - run:
           name: Running tests
           command: mvn clean install
@@ -37,7 +37,7 @@ jobs:
           command: mvn allure:report
           when: always
       - store_test_results:
-          path: target/surefire-reports/testngreports
+          path: target/surefire-reports/junitreports
           when: always
       - store_artifacts:
           path: target/site/allure-maven-plugin/

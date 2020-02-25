@@ -12,7 +12,7 @@ pipeline {
      stage('Build') {
         steps {
            // Get some code from a GitHub repository
-           git 'https://github.com/romakun/MoodPanda'
+           git branch: "${params.BRANCH}", url: 'https://github.com/romakun/MoodPanda'
 
            // Run Maven on a Unix agent.
            //sh "mvn -Dmaven.test.failure.ignore=true clean package"

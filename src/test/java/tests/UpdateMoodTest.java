@@ -1,6 +1,6 @@
 package tests;
 
-import org.testng.annotations.BeforeClass;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -10,11 +10,11 @@ public class UpdateMoodTest extends BaseTest{
 
 
     @Test(dataProvider = "moodsData")
-    public void updateMood(int moodNumber, String moodComment) {
+    public void updateMood(int moodRate, String moodComment) {
         loginSteps.login("gotestweb@mailinator.com", "12345678");
         moodSteps
                 .openMyUpdatesPage()
-                .updateMood(moodNumber, moodComment);
+                .updateMood(moodRate, moodComment);
     }
 
     @DataProvider

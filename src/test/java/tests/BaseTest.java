@@ -4,10 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
-import steps.ChangeAvatarSteps;
-import steps.EditProfileSteps;
-import steps.LoginSteps;
-import steps.MoodSteps;
+import steps.*;
 import tests.base.TestListener;
 
 import static com.codeborne.selenide.Selenide.close;
@@ -19,6 +16,7 @@ public class BaseTest {
     MoodSteps moodSteps;
     EditProfileSteps editprofilesteps;
     ChangeAvatarSteps changeAvatarsteps;
+    CalendarSteps calendarsteps;
 
     @BeforeClass
     public void setupDriver() {
@@ -32,6 +30,8 @@ public class BaseTest {
         moodSteps = new MoodSteps();
         editprofilesteps = new EditProfileSteps();
         changeAvatarsteps = new ChangeAvatarSteps();
+        calendarsteps = new CalendarSteps();
+
     }
 
     @AfterMethod

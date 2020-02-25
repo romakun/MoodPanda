@@ -4,17 +4,13 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementShould;
 import com.codeborne.selenide.ex.ListSizeMismatch;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.fail;
+import static org.testng.Assert.*;
 
 public class MyUpdatesPage extends BasePage {
 
@@ -27,7 +23,7 @@ public class MyUpdatesPage extends BasePage {
     private static final String COMMENT_BLOCK_CSS = "#ContentPlaceHolderContent_RepeaterFeed_PanelNewComment_";
     private static final String BUTTON_REPLY_CSS = ".ButtonReply";
     private static final String MY_MOOD_HUG_ICONS = ".ButtonHug";
-    private static final String MY_MOOD_FOLLOW_ICON = ".FeedFollow";
+    private static final String MY_AVATAR_CSS = ".rounded-top-corner img";
 
 
     @Override
@@ -61,8 +57,7 @@ public class MyUpdatesPage extends BasePage {
     }
 
 
-
-    public void addComment(int moodNumber, String comment){
+    public void addComment(int moodNumber, String comment) {
         getMoodByNumber(moodNumber)
                 .find(MY_MOOD_COMMENT_ICONS_CSS)
                 .click();
@@ -75,21 +70,21 @@ public class MyUpdatesPage extends BasePage {
         $(COMMENT_BLOCK_CSS + (moodNumber - 1))
                 .find(BUTTON_REPLY_CSS)
                 .click();
-         try {
+        try {
             getMoodByNumber(moodNumber).find(".mccomments" + moodNumber).shouldBe(Condition.text("" + (commentsCount + 1)));
-        } catch (ElementShould e){
-             System.out.println("Что-то пошло не так и количество комментариев не увеличилось на 1");
-         }
+        } catch (ElementShould e) {
+            System.out.println("Что-то пошло не так и количество комментариев не увеличилось на 1");
+        }
     }
 
-    public void addHugs(int moodNumber){
+    public void addHugs(int moodNumber) {
         int commentHugsCount = $$(byText("*Hugs*")).size();
         getMoodByNumber(moodNumber)
                 .find(MY_MOOD_HUG_ICONS)
                 .click();
         try {
             $$(byText("*Hugs*")).shouldHaveSize(commentHugsCount + 1);
-        } catch (ListSizeMismatch e){
+        } catch (ListSizeMismatch e) {
             Assert.fail("Количество обнимашек не увеличилось на 1");
         }
     }
@@ -106,5 +101,9 @@ public class MyUpdatesPage extends BasePage {
             }
         }
         return mood;
+    }
+
+    public void checkAvatarOnActual(String actualSrc) {
+        assertEquals($(MY_AVATAR_CSS).getAttribute("src"), (actualSrc + "?1").toLowerCase(), "На странице отображается не верное изображение");
     }
 }

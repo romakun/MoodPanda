@@ -49,4 +49,9 @@ public class MoodSteps {
                 .addHugs(moodNumber);
         return this;
     }
+
+    @Step("Check my avatar on actual")
+    public void checkAvatar(String actualSrc){
+        page.checkAvatarOnActual(actualSrc);
+    }
 }

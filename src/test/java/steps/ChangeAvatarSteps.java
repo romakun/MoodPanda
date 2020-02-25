@@ -18,9 +18,8 @@ public class ChangeAvatarSteps {
     }
 
     @Step("Edit avatar image")
-    public ChangeAvatarSteps editAvatar(String avatarNumber){
-        page.chooseNewAvatar(avatarNumber);
-        return this;
+    public String editAvatar(String avatarNumber){
+        return page.chooseNewAvatar(avatarNumber);
     }
 
     @Step("Check avatar change success")
@@ -28,4 +27,5 @@ public class ChangeAvatarSteps {
         page.checkAvatarChooseSuccess();
         return this;
     }
+
 }

@@ -6,7 +6,7 @@ pipeline {
      maven "M3"
   }
  parameters {
-  gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+  gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'master', type: 'PT_BRANCH'
  }
   stages {
      stage('Build') {

@@ -12,7 +12,7 @@ public class CalendarTest extends BaseTest {
                 .checkMoodCountPerDay();
         moodSteps
                 .openMyUpdatesPage()
-                .updateMood(10, "Best DAY!");
+                .updateMood(10, "Best_DAY!");
         calendarsteps
                 .openCalendarPage()
                 .checkMoodCountAfterUpdateMood();

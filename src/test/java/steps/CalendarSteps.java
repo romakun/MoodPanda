@@ -29,7 +29,8 @@ public class CalendarSteps {
 
     @Step
     public CalendarSteps checkMoodCountAfterUpdateMood() {
-        assertEquals(page.getMoodsCountPerDay() - 1, moodsCount, "Количество мудов не изменилось");
+
+        assertEquals(page.getMoodsCountPerDay() - 1 , moodsCount, "Количество мудов не изменилось");
         return this;
     }
 }
